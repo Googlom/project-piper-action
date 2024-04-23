@@ -3,12 +3,12 @@ name: Release Piper Action
 on:
   workflow_dispatch:
   schedule:
-#    - cron: '0 9 * * 1'  # at 9 am every Monday
+    # - cron: '0 9 * * 1'  # at 9 am every Monday
     - cron: '*/10 * * * *'  # every 10 minutes
 
 jobs:
   check_latest_commit_date:
-#    if: ${{ github.event_name == 'schedule' }}
+    # if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     name: Check latest commit
     outputs:
@@ -19,13 +19,12 @@ jobs:
       - id: should_run
         continue-on-error: true
         name: Check if latest commit is less than a week
-#        run: if [[ -n $(git rev-list  --after="7 days" ${{ github.sha }}) ]]; then echo "should_run=false" >> GITHUB_ENV; fi
         run: |
           if [[ -n $(git rev-list --after="10 minutes" ${{ github.sha }}) ]] 
           then 
             echo "should_run=true" >> "$GITHUB_OUTPUT" 
           else 
-            echo "No commits for the last week
+            echo "No commits for the last week"
           fi
 
       # in case of manual release trigger
