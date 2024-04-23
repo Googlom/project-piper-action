@@ -21,9 +21,11 @@ jobs:
         name: Check if latest commit is less than a week
 #        run: if [[ -n $(git rev-list  --after="7 days" ${{ github.sha }}) ]]; then echo "should_run=false" >> GITHUB_ENV; fi
         run: |
-          if [[ -n $(git rev-list --after="10 minutes" ${{ github.sha }}) ]] \ 
-            then echo "should_run=true" >> "$GITHUB_OUTPUT" \
-            else echo "No commits for the last week \
+          if [[ -n $(git rev-list --after="10 minutes" ${{ github.sha }}) ]] 
+          then 
+            echo "should_run=true" >> "$GITHUB_OUTPUT" 
+          else 
+            echo "No commits for the last week
           fi
 
       # in case of manual release trigger
