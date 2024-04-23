@@ -8,6 +8,7 @@ on:
 
 jobs:
   check_latest_commit_date:
+#    if: ${{ github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     name: Check latest commit
     outputs:
@@ -20,9 +21,8 @@ jobs:
       - id: should_run
         continue-on-error: true
         name: Check if latest commit is less than a week
-        if: ${{ github.event_name == 'schedule' }}
 #        run: if [[ -n $(git rev-list  --after="7 days" ${{ github.sha }}) ]]; then echo "should_run=false" >> GITHUB_ENV; fi
-        run: if [[ -n $(git rev-list  --after="10 minutes" ${{ github.sha }}) ]]; then echo "should_run=false" >> "$GITHUB_OUTPUT"; fi
+        run: if [[ -n $(git rev-list  --after="20 minutes" ${{ github.sha }}) ]]; then echo "should_run=false" >> "$GITHUB_OUTPUT"; fi
 
   release:
     name: Release with new tag
