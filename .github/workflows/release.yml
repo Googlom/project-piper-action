@@ -30,7 +30,7 @@ jobs:
 
       # in case of manual release trigger
       - if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: echo "should_run=true" >> "$GITHUB_OUTPUT
+        run: echo "should_run=true" >> "$GITHUB_OUTPUT"
 
 
   release:
