@@ -91,7 +91,7 @@ jobs:
         if: steps.smtp_secrets.conclusion == 'success'
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: ${{ env.smtp_url }}
+          connection_url: ${{ env.smtp_url }}
           subject: Workflow failure in ${{ github.repository }}
           priority: high
           to: ${{ env.smtp_mail_rcpt }}
